@@ -1,6 +1,25 @@
 # CMakeLists for ESP-IDF
 
 file(GLOB_RECURSE SOURCES "src/**.cpp" "src/**.c")
+
+# Optional generated catalog; default sources remain the manufacturer's sources.
+if(DEFINED BUTTERBOT_PHRASES_CPP)
+    if(NOT IS_ABSOLUTE "${BUTTERBOT_PHRASES_CPP}" OR NOT EXISTS "${BUTTERBOT_PHRASES_CPP}" OR IS_DIRECTORY "${BUTTERBOT_PHRASES_CPP}")
+        message(FATAL_ERROR "BUTTERBOT_PHRASES_CPP must be an existing absolute file outside the repository")
+    endif()
+    get_filename_component(_phrases_real "${BUTTERBOT_PHRASES_CPP}" REALPATH)
+    get_filename_component(_repo_real "${CMAKE_CURRENT_LIST_DIR}/../.." REALPATH)
+    file(RELATIVE_PATH _phrases_relative "${_repo_real}" "${_phrases_real}")
+    if(NOT _phrases_relative MATCHES "^\\.\\./")
+        message(FATAL_ERROR "BUTTERBOT_PHRASES_CPP must be outside the repository")
+    endif()
+    file(SHA256 "${_phrases_real}" _phrases_sha256)
+    if(NOT DEFINED BUTTERBOT_PHRASES_SHA256 OR NOT "${_phrases_sha256}" STREQUAL "${BUTTERBOT_PHRASES_SHA256}")
+        message(FATAL_ERROR "BUTTERBOT_PHRASES_SHA256 mismatch")
+    endif()
+    list(REMOVE_ITEM SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/Phrases.cpp")
+    list(APPEND SOURCES "${_phrases_real}")
+endif()
 set(COMPONENT_SRCS ${SOURCES})
 
 set(COMPONENT_ADD_INCLUDEDIRS src)
