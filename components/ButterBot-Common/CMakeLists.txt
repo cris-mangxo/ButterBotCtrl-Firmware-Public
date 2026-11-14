@@ -4,20 +4,18 @@ file(GLOB_RECURSE SOURCES "src/**.cpp" "src/**.c")
 
 # Optional generated catalog; default sources remain the manufacturer's sources.
 if(DEFINED BUTTERBOT_PHRASES_CPP)
-    # register_component calls spaces2list after this hook. Close its input
-    # alphabet before hashing, including resolved aliases and source suffix.
-    string(ASCII 9 10 11 12 13 _phrases_whitespace)
-    string(FIND "${BUTTERBOT_PHRASES_CPP}" "$<" _phrases_genex)
-    if("${BUTTERBOT_PHRASES_CPP}" MATCHES "[ ;${_phrases_whitespace}]" OR NOT _phrases_genex EQUAL -1)
-        message(FATAL_ERROR "BUTTERBOT_PHRASES_CPP must be one literal source, without whitespace, list separators or generator expressions")
+    # Positive portable POSIX alphabet, shared with the Python wrapper.
+    # Validate before REALPATH: CMake otherwise interprets backslashes as slashes.
+    if(NOT "${BUTTERBOT_PHRASES_CPP}" MATCHES "^/[A-Za-z0-9_./-]+$")
+        message(FATAL_ERROR "BUTTERBOT_PHRASES_CPP requires a portable POSIX path")
     endif()
     if(NOT IS_ABSOLUTE "${BUTTERBOT_PHRASES_CPP}" OR NOT EXISTS "${BUTTERBOT_PHRASES_CPP}" OR IS_DIRECTORY "${BUTTERBOT_PHRASES_CPP}")
         message(FATAL_ERROR "BUTTERBOT_PHRASES_CPP must be an existing absolute file outside the repository")
     endif()
     get_filename_component(_phrases_real "${BUTTERBOT_PHRASES_CPP}" REALPATH)
-    string(FIND "${_phrases_real}" "$<" _phrases_genex)
-    if("${_phrases_real}" MATCHES "[ ;${_phrases_whitespace}]" OR NOT _phrases_genex EQUAL -1)
-        message(FATAL_ERROR "BUTTERBOT_PHRASES_CPP resolved path contains whitespace, a list separator or generator expression")
+    if(NOT "${_phrases_real}" MATCHES "^/[A-Za-z0-9_./-]+$" OR
+       NOT "${BUTTERBOT_PHRASES_CPP}" STREQUAL "${_phrases_real}")
+        message(FATAL_ERROR "BUTTERBOT_PHRASES_CPP requires the canonical portable POSIX path")
     endif()
     if(NOT "${BUTTERBOT_PHRASES_CPP}" MATCHES "\\.cpp$" OR NOT "${_phrases_real}" MATCHES "\\.cpp$")
         message(FATAL_ERROR "BUTTERBOT_PHRASES_CPP received and resolved paths must end in .cpp")
