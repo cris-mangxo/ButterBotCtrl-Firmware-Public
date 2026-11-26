@@ -10,12 +10,12 @@ static const std::map<FaceDetectData::State, Asset> FaceDetectAssetImgMap = {
 };
 
 static const std::map<FaceDetectData::State, const char*> FaceDetectSentences = {
-	{ FaceDetectData::State::AlreadySaved, "Error: Emotional conflict" },
-	{ FaceDetectData::State::NewOwner, "Attachment forming rapidly" },
-	{ FaceDetectData::State::NoFaceFound, "Nothing but void" },
-	{ FaceDetectData::State::NotRecognized, "You are not my real dad" },
-	{ FaceDetectData::State::Recognized, "It's you! Master of Butter!" },
-	{ FaceDetectData::State::Scanning, "Analyzing flesh geometry" },
+	{ FaceDetectData::State::AlreadySaved, "Error: conflicto emocional" },
+	{ FaceDetectData::State::NewOwner, "Cariño en proceso" },
+	{ FaceDetectData::State::NoFaceFound, "Puro vacío" },
+	{ FaceDetectData::State::NotRecognized, "Tú no eres mi papá" },
+	{ FaceDetectData::State::Recognized, "¡Eres tú, amo de la mantequilla!" },
+	{ FaceDetectData::State::Scanning, "Analizando tu cara" },
 };
 
 FaceDetectWindow::FaceDetectWindow(lv_obj_t* parent, const FaceDetectData* params) : HomeWindow(parent, TITLE){
@@ -31,6 +31,9 @@ void FaceDetectWindow::onData(const BBData* data){
 }
 
 void FaceDetectWindow::buildUI(const FaceDetectData data){
+    const bool scanning=data.state==FaceDetectData::State::Scanning;
+    lv_obj_set_style_pad_hor(innerContent,scanning?0:1,0);
+    lv_obj_set_style_border_side(innerContent,static_cast<lv_border_side_t>(scanning?(LV_BORDER_SIDE_TOP|LV_BORDER_SIDE_LEFT|LV_BORDER_SIDE_BOTTOM):LV_BORDER_SIDE_FULL),0);
 	// Sentence label
 	lv_obj_t* sentenceLabel = lv_label_create(innerContent);
 	lv_label_set_text(sentenceLabel, FaceDetectSentences.at(data.state));
@@ -58,7 +61,7 @@ void FaceDetectWindow::buildUI(const FaceDetectData data){
 
 			// Distance hint label
 			lv_obj_t* hintLabel = lv_label_create(innerContent);
-			lv_label_set_text(hintLabel, "Keep face 0.5M from camera");
+			lv_label_set_text(hintLabel, "Pon tu cara a 0.5M de la cámara");
 			lv_label_set_long_mode(hintLabel, LV_LABEL_LONG_WRAP);
 			lv_obj_add_style(hintLabel, labelDefaultStyle, 0);
 			lv_obj_set_size(hintLabel, 116, LV_SIZE_CONTENT);

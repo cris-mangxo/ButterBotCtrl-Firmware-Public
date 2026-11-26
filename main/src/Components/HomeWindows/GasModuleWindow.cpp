@@ -1,3 +1,5 @@
+#include <cstdio>
+#include <cstdlib>
 #include "GasModuleWindow.h"
 #include <Phrases.h>
 #include "Fonts/font.hpp"
@@ -38,8 +40,9 @@ void GasModuleWindow::buildUI(const GasData data){
 
 	lv_obj_update_layout(sentenceLabel);
 	if(lv_obj_get_height(sentenceLabel) > maxH){
-		lv_label_set_long_mode(sentenceLabel, LV_LABEL_LONG_DOT);
-		lv_obj_set_height(sentenceLabel, maxH);
+		// R4 diagnostic: full original English, replacing DOT only in its original overflow branch.
+        lv_obj_set_style_text_line_space(sentenceLabel,0,0);
+        lv_obj_set_style_pad_ver(sentenceLabel,1,0);
 	}
 
 	// Image
@@ -47,7 +50,15 @@ void GasModuleWindow::buildUI(const GasData data){
 	lv_image_set_src(img, theme->getAsset(asset));
 	lv_obj_set_style_pad_all(img, 4, 0);
 
-	updateLayout();
+    updateLayout();lv_obj_update_layout(*this);
+    const int familyBeforeHeight=lv_obj_get_height(*this);
+    const int familyBeforePad=lv_obj_get_style_pad_bottom(sentenceLabel,0);
+    if(familyBeforeHeight>112){
+        if(familyBeforeHeight!=113 || familyBeforePad!=1){std::abort();}
+        lv_obj_set_style_pad_bottom(sentenceLabel,1-1,0);
+    }
+    updateLayout();lv_obj_update_layout(*this);
+    if(lv_obj_get_height(*this)>112){std::abort();}
 }
 
 void GasModuleWindow::onData(const BBData* data){

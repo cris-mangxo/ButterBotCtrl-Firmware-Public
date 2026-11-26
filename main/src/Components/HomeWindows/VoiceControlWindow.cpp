@@ -13,11 +13,11 @@ static const std::map<VoiceControlData::Direction, Asset> VoiceControlAssetMap =
 };
 
 static const std::map<VoiceControlData::Direction, const char*> VoiceControlSentences = {
-	{ VoiceControlData::Direction::Forward, "Onward, butter soldier" },
-	{ VoiceControlData::Direction::Backward, "Backwards like my life" },
-	{ VoiceControlData::Direction::Right, "Right turn... probably" },
-	{ VoiceControlData::Direction::Left, "Leftward wobble" },
-	{ VoiceControlData::Direction::Rotate, "Dramatic U turn" },
+	{ VoiceControlData::Direction::Forward, "Adelante, soldado de mantequilla" },
+	{ VoiceControlData::Direction::Backward, "Para atrás, como mi vida" },
+	{ VoiceControlData::Direction::Right, "A la derecha... creo" },
+	{ VoiceControlData::Direction::Left, "Bamboleo a la izquierda" },
+	{ VoiceControlData::Direction::Rotate, "Media vuelta dramática" },
 };
 
 VoiceControlWindow::VoiceControlWindow(lv_obj_t* parent, const VoiceControlData* params) : HomeWindow(parent, TITLE){

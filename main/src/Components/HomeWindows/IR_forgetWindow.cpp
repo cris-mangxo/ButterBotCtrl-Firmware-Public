@@ -8,9 +8,9 @@ static constexpr const char* TAG = "IR_forgetWindow";
 
 static const std::map<IR_forgetData::State, const char*> ForgetSentences = {
 	{ IR_forgetData::State::Listening, "" },
-	{ IR_forgetData::State::NotRecognised, "IR confusion" },
-	{ IR_forgetData::State::Done, "Memory purged" },
-	{ IR_forgetData::State::Empty, "Nothing to forget" },
+	{ IR_forgetData::State::NotRecognised, "Confusión IR" },
+	{ IR_forgetData::State::Done, "Memoria borrada" },
+	{ IR_forgetData::State::Empty, "Nada que olvidar" },
 };
 
 IR_forgetWindow::IR_forgetWindow(lv_obj_t* parent, const IR_forgetData* params) : HomeWindow(parent, TITLE){

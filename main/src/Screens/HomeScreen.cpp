@@ -184,7 +184,7 @@ void HomeScreen::handleButtonEvent(const Button btn, const ButtonInput::Action a
 			}
 
 			overridePressTime = millis();
-			showPopup(new HoldPopupWindow(*this, "Connecting"), Button::ManualOverride);
+			showPopup(new HoldPopupWindow(*this, "Conectando"), Button::ManualOverride);
 		}
 		return;
 	}
@@ -205,7 +205,7 @@ void HomeScreen::handleButtonEvent(const Button btn, const ButtonInput::Action a
 			if(activeWindow != nullptr){
 				clearPopupFor(Button::ManualOverride);
 			} else{
-				static_cast<HoldPopupWindow*>(popup)->showHint("Hold for RC");
+				static_cast<HoldPopupWindow*>(popup)->showHint("Mantén para RC");
 				overrideHintShownAt = millis();
 			}
 		} else{
@@ -245,7 +245,7 @@ void HomeScreen::loop(){
 
 	// Show hold popup if btn held past the short-press window
 	if(summonHoldEnabled && summonPressTime != 0 && popup == nullptr && millis() - summonPressTime >= SummonShortPressMaxMs){
-		showPopup(new HoldPopupWindow(*this, "Summon", SummonLongPressMinMs - SummonShortPressMaxMs), Button::Summon);
+		showPopup(new HoldPopupWindow(*this, "Convocar", SummonLongPressMinMs - SummonShortPressMaxMs), Button::Summon);
 	}
 
 	if(summonHoldEnabled && summonPressTime != 0 && millis() - summonPressTime >= SummonLongPressMinMs){

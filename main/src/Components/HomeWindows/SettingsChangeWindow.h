@@ -12,7 +12,7 @@ public:
 private:
 	lv_obj_t* sentenceLabel;
 
-	static constexpr const char* TITLE = "Settings";
+	static constexpr const char* TITLE = "Ajustes";
 
 	void buildUI(SettingsChangeData data);
 };

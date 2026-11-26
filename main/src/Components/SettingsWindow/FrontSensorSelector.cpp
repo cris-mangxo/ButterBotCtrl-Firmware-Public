@@ -75,7 +75,7 @@ void FrontSensorSelector::buildUI(lv_obj_t* parent){
 
 	widgetLabel = lv_label_create(*this);
 	lv_obj_add_style(widgetLabel, labelDefaultStyle, 0);
-	lv_label_set_text(widgetLabel, "FRONT SENSOR");
+	lv_label_set_text(widgetLabel, "Sensor fr.");
 	lv_obj_set_width(widgetLabel, 56);
 	lv_obj_set_pos(widgetLabel, 0, 5);
 

@@ -22,6 +22,7 @@ private:
 	void loop() override;
 
 	void buildSettingsHint();
+	void buildSpanishCaption();
 
 	void handleButtonEvent(Button btn, ButtonInput::Action action);
 };

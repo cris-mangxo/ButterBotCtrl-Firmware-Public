@@ -16,5 +16,12 @@ void LEDModuleWindow::buildUI(const LEDModuleData data){
 	lv_obj_add_style(sentenceLabel, labelDefaultStyle, 0);
 	lv_obj_set_size(sentenceLabel, 90, LV_SIZE_CONTENT);
 
-	updateLayout();
+    updateLayout();lv_obj_update_layout(*this);
+        if(data.missing && lv_obj_get_height(*this)>112){
+            lv_obj_set_width(sentenceLabel,116);
+            lv_obj_set_style_text_line_space(sentenceLabel,0,0);
+            lv_obj_set_style_pad_ver(sentenceLabel,1,0);
+            lv_obj_set_style_pad_ver(img,0,0);
+        }
+    updateLayout();lv_obj_update_layout(*this);
 }

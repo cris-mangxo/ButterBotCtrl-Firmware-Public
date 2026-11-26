@@ -19,11 +19,11 @@ public:
 	void onData(const BBData* data) override;
 
 private:
-	static constexpr const char* TITLE = "Notifications";
-	static constexpr const char* NoNotifsSentence = "Absolutely nothing new";
-	static constexpr const char* CountSentence = "Loading social anxiety";
-	static constexpr const char* ReadingSentence = "Reading...";
-	static constexpr const char* DoneSentence = "All caught up";
+	static constexpr const char* TITLE = "Notificaciones";
+	static constexpr const char* NoNotifsSentence = "Nada nuevo, para nada";
+	static constexpr const char* CountSentence = "Cargando ansiedad social";
+	static constexpr const char* ReadingSentence = "Leyendo...";
+	static constexpr const char* DoneSentence = "Todo al día";
 
 	void buildUI(const PhoneListNotifsData& data);
 

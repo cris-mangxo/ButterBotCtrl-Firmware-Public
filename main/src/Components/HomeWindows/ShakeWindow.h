@@ -19,8 +19,8 @@ private:
 	LVGIF* gif;
 	lv_obj_t* sentenceLabel;
 
-	static constexpr const char* TITLE = "Shake";
-	static constexpr const char* Sentence = "Blender mode??? Nooooooo";
+	static constexpr const char* TITLE = "Sacudida";
+	static constexpr const char* Sentence = "¿Licuadora? ¡Nooooo!";
 
 	void buildUI(ShakeData data);
 };

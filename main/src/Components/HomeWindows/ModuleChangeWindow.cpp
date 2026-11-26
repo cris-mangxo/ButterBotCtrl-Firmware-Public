@@ -13,13 +13,13 @@ static const std::map<ModuleType, const Asset> ModuleAssetMap = {
 };
 
 static const std::map<ModuleType, const char*> ModuleSentenceMap = {
-	{ ModuleType::LED, "Light powers gained!" },
-	{ ModuleType::PerfBoard, "Tinkering mode unlocked!" },
-	{ ModuleType::Motion, "Motion paranoia activated!" },
-	{ ModuleType::CO2, "Air sniffer attached!" },
-	{ ModuleType::IR, "IR powers acquired!" },
-	{ ModuleType::TempHumidity, "Weather brain plugged!" },
-	{ ModuleType::Unknown, "Unknown module detected!" },
+	{ ModuleType::LED, "¡Poderes de luz adquiridos!" },
+	{ ModuleType::PerfBoard, "¡Modo inventor disponible!" },
+	{ ModuleType::Motion, "¡Paranoia de movimiento activa!" },
+	{ ModuleType::CO2, "¡Olfato de aire conectado!" },
+	{ ModuleType::IR, "¡Poderes IR adquiridos!" },
+	{ ModuleType::TempHumidity, "¡Cerebro del clima conectado!" },
+	{ ModuleType::Unknown, "¡Módulo desconocido!" },
 };
 
 

@@ -15,7 +15,7 @@ public:
 	void onData(const BBData* data) override;
 
 private:
-	static constexpr const char* TITLE = "Gas Module";
+	static constexpr const char* TITLE = "Módulo de gas";
 
 	// Truncate too long sentences
 	static constexpr int32_t MaxSentenceLines = 3;

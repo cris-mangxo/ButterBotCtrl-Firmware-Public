@@ -13,8 +13,8 @@ public:
 	TempHumScaleWindow(lv_obj_t* parent, const TempHumScaleData* params);
 
 private:
-	static constexpr const char* TITLE = "Temp Hum Scale";
-	static constexpr const char* Sentence = "Pick your flavor!";
+	static constexpr const char* TITLE = "Escala de clima";
+	static constexpr const char* Sentence = "¡Elige tu escala!";
 
 	void buildUI(TempHumScaleData data);
 };

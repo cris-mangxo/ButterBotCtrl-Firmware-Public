@@ -5,9 +5,9 @@
 static constexpr const char* TAG = "Listen";
 
 static const std::map<ListenData::Phase, const char*> ListenSentences = {
-	{ ListenData::Phase::Listening, "Listening... reluctantly" },
-	{ ListenData::Phase::NotUnderstand, "Try... human language?" },
-	{ ListenData::Phase::Abort, "Silent... but resentful" },
+	{ ListenData::Phase::Listening, "Escucho inglés... sin ganas" },
+	{ ListenData::Phase::NotUnderstand, "Prueba... ¿en inglés?" },
+	{ ListenData::Phase::Abort, "Callado... con rencor" },
 };
 
 ListenWindow::ListenWindow(lv_obj_t* parent, const ListenData* params) : HomeWindow(parent, TITLE){

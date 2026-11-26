@@ -8,7 +8,18 @@ ShakeWindow::ShakeWindow(lv_obj_t* parent, const ShakeData* params) : HomeWindow
 
 void ShakeWindow::buildUI(const ShakeData data){
 	// GIF control
-	gif = new LVGIF(innerContent, theme->getAsset(Asset::Shake));
+	auto gifParent=innerContent;
+    if(theme->getTheme()==Theme::Red){
+        gifParent=lv_obj_create(innerContent);
+        lv_obj_set_size(gifParent,78,62);
+        lv_obj_set_style_pad_all(gifParent,0,0);
+        lv_obj_set_style_border_width(gifParent,0,0);
+        lv_obj_set_style_bg_opa(gifParent,LV_OPA_TRANSP,0);
+        lv_obj_remove_flag(gifParent,LV_OBJ_FLAG_SCROLLABLE);
+        lv_obj_remove_flag(gifParent,LV_OBJ_FLAG_OVERFLOW_VISIBLE);
+    }
+    gif = new LVGIF(gifParent, theme->getAsset(Asset::Shake));
+    if(theme->getTheme()==Theme::Red)lv_obj_set_pos(*gif,-26,-21);
 	gif->setLooping(LVGIF::LoopType::On);
 	gif->reset();
 

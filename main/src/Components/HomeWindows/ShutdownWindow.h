@@ -13,8 +13,8 @@ public:
 	ShutdownWindow(lv_obj_t* parent, const ShutdownData* params);
 
 private:
-	static constexpr const char* TITLE = "Shutdown";
-	static constexpr const char* Sentence = "Shutting down";
+	static constexpr const char* TITLE = "Apagar robot";
+	static constexpr const char* Sentence = "Apagando robot";
 
 	void buildUI(ShutdownData data);
 };

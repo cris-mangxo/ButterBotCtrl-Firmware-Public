@@ -8,7 +8,7 @@ protected:
 	IntruderDetectionWindow(lv_obj_t* parent, const PIRModuleData* params, bool activated);
 
 private:
-	static constexpr const char* TITLE = "Intruder Detection";
+	static constexpr const char* TITLE = "Vigilar intrusos";
 
 	void buildUI(PIRModuleData data, bool activated);
 };

@@ -16,8 +16,8 @@ public:
 	void onDismiss() override;
 
 private:
-	static constexpr const char* TITLE = "LED Strobe";
-	static constexpr const char* Sentence = "Warning: rave imminent";
+	static constexpr const char* TITLE = "LED destellante";
+	static constexpr const char* Sentence = "Aviso: fiesta inminente";
 
 	LVGIF* gif = nullptr;
 

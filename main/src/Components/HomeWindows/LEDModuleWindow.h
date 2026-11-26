@@ -13,8 +13,8 @@ public:
 	LEDModuleWindow(lv_obj_t* parent, const LEDModuleData* params);
 
 private:
-	static constexpr const char* TITLE = "LED Module";
-	static constexpr const char* Sentence = "Light powers gained!";
+	static constexpr const char* TITLE = "Módulo LED";
+	static constexpr const char* Sentence = "¡Poderes de luz adquiridos!";
 
 	void buildUI(LEDModuleData data);
 };

@@ -15,7 +15,7 @@ public:
 private:
 	lv_obj_t* sentenceLabel;
 
-	static constexpr const char* TITLE = "What's this?";
+	static constexpr const char* TITLE = "¿Qué es esto?";
 
 	void buildUI(WhatsThisData data);
 };

@@ -6,8 +6,8 @@
 static constexpr const char* TAG = "CurrentTime";
 
 static const std::unordered_map<CurrentTimeData::Status, const char*> CurrentTimeSentences = {
-	{ CurrentTimeData::Status::NoTime, "Time is fake" },
-	{ CurrentTimeData::Status::ShowTime, "Present moment report!" },
+	{ CurrentTimeData::Status::NoTime, "El tiempo es un invento" },
+	{ CurrentTimeData::Status::ShowTime, "¡Reporte del presente!" },
 };
 
 CurrentTimeWindow::CurrentTimeWindow(lv_obj_t* parent, const CurrentTimeData* params) : HomeWindow(parent, TITLE){
@@ -23,7 +23,7 @@ void CurrentTimeWindow::onData(const BBData* data){
 }
 
 void CurrentTimeWindow::buildUI(const CurrentTimeData data){
-	static constexpr uint8_t winW = 120;
+	static constexpr uint8_t winW = 116;
 	switch(data.status){
 		case CurrentTimeData::Status::NoTime: {
 			lv_obj_t* img = lv_image_create(innerContent);
@@ -48,7 +48,7 @@ void CurrentTimeWindow::buildUI(const CurrentTimeData data){
 			lv_obj_t* timeLabel = lv_label_create(timeContainer);
 			lv_obj_add_style(timeLabel, labelDefaultStyle, 0);
 			lv_obj_set_style_text_font(timeLabel, &lv_font_butter_clock, 0);
-			lv_obj_set_style_text_letter_space(timeLabel, 2, 0);
+			lv_obj_set_style_text_letter_space(timeLabel, 1, 0);
 			lv_obj_set_style_text_align(timeLabel, LV_TEXT_ALIGN_CENTER, 0);
 			lv_obj_set_style_pad_ver(timeLabel, 16, 0);
 

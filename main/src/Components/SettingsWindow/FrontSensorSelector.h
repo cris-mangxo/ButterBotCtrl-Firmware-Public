@@ -30,8 +30,8 @@ private:
 		FrontSensorMode::On
 	};
 	static constexpr std::array<const char*, OptionsNum> OptionNameMap = {
-		"OFF",
-		"ON"
+		"No",
+		"Sí"
 	};
 
 	std::function<void(uint32_t)> keyCb;

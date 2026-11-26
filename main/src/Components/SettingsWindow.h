@@ -58,11 +58,11 @@ private:
 
 	int32_t currentFocusIndex = 0;
 	static constexpr int32_t WidgetsNum = 6;
-	static constexpr int32_t ScrollMargin = 4;
+	static constexpr int32_t ScrollMargin = 0;
 
 	static constexpr int32_t WindowWidth = 120;
 	static constexpr int32_t WindowHeight = 60;
-	static constexpr const char* WindowTitle = "Settings";
+	static constexpr const char* WindowTitle = "Ajustes";
 
 	const std::function<void(const Theme &newTheme)> themeCb;
 

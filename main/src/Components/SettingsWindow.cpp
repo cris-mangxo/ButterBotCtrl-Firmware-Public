@@ -46,6 +46,7 @@ void SettingsWindow::buildUI(lv_obj_t* parent){
 
 	lv_obj_set_style_border_width(innerContent, 1, 0);
 	lv_obj_set_style_border_color(innerContent, colorPrim, 0);
+	lv_obj_set_style_border_post(innerContent, true, 0);
 	lv_obj_set_style_bg_color(*this, colorTert, 0);
 	lv_obj_set_style_bg_image_src(*this, theme->getAsset(Asset::Grid), 0);
 

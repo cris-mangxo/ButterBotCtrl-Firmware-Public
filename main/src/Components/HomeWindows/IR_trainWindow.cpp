@@ -5,11 +5,11 @@
 static constexpr const char* TAG = "IR_trainWindow";
 
 static const std::map<IR_trainData::State, const char*> ThinkingSentences = {
-	{ IR_trainData::State::MaxCapacity, "New info denied" },
-	{ IR_trainData::State::Scanning, "Laser eyes engaged" },
-	{ IR_trainData::State::ScanDone, "IR success, baby!" },
+	{ IR_trainData::State::MaxCapacity, "No cabe otro poder" },
+	{ IR_trainData::State::Scanning, "Ojos láser activados" },
+	{ IR_trainData::State::ScanDone, "¡Éxito IR, claro que sí!" },
 	{ IR_trainData::State::Listening, "" },
-	{ IR_trainData::State::SaveDone, "New power unlocked" },
+	{ IR_trainData::State::SaveDone, "Nuevo poder desbloqueado" },
 };
 
 IR_trainWindow::IR_trainWindow(lv_obj_t* parent, const IR_trainData* params) : HomeWindow(parent, TITLE){

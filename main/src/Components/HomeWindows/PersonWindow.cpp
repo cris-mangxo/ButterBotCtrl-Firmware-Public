@@ -28,5 +28,11 @@ void PersonWindow::buildUI(const PersonData data){
 	lv_obj_set_style_text_align(sentenceLabel, LV_TEXT_ALIGN_CENTER, 0);
 	lv_obj_set_style_pad_bottom(sentenceLabel, 10, 0);
 
-	updateLayout();
+    updateLayout();lv_obj_update_layout(*this);
+    if(lv_obj_get_height(*this)>112){
+        lv_obj_set_style_pad_bottom(sentenceLabel,5,0);
+        updateLayout();lv_obj_update_layout(*this);
+        if(lv_obj_get_height(*this)>112)lv_obj_set_style_pad_ver(img,1,0);
+    }
+    updateLayout();lv_obj_update_layout(*this);
 }

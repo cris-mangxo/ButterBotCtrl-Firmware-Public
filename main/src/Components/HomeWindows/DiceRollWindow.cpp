@@ -114,10 +114,10 @@ static const std::map<DiceType, const char*> DiceTypeMap = {
 };
 
 static const std::map<DiceRollData::Phase, const char*> DiceRollSentences = {
-	{ DiceRollData::Phase::RollCount, "Roll count, please" },
-	{ DiceRollData::Phase::DiceKind, "Destiny format, please" },
-	{ DiceRollData::Phase::RollAnim, "Destiny in progress" },
-	{ DiceRollData::Phase::Result, "The dice have spoken" },
+	{ DiceRollData::Phase::RollCount, "¿Cuántas tiradas?" },
+	{ DiceRollData::Phase::DiceKind, "Elige tu dado del destino" },
+	{ DiceRollData::Phase::RollAnim, "Destino en proceso" },
+	{ DiceRollData::Phase::Result, "Los dados han hablado" },
 };
 
 DiceRollWindow::DiceRollWindow(lv_obj_t* parent, const DiceRollData* params) : HomeWindow(parent, TITLE){
@@ -139,6 +139,7 @@ void DiceRollWindow::buildUI(const DiceRollData data){
 	lv_label_set_long_mode(sentenceLabel, LV_LABEL_LONG_WRAP);
 	lv_obj_add_style(sentenceLabel, labelDefaultStyle, 0);
 
+	lv_obj_set_style_pad_hor(innerContent,data.phase==DiceRollData::Phase::DiceKind?0:1,0);
 	switch(data.phase){
 		case DiceRollData::Phase::RollCount: {
 			lv_obj_t* img = lv_image_create(innerContent);
@@ -150,7 +151,10 @@ void DiceRollWindow::buildUI(const DiceRollData data){
 		}
 		case DiceRollData::Phase::DiceKind: {
 			lv_obj_t* img = lv_image_create(innerContent);
-			lv_image_set_src(img, theme->getAsset(Asset::DiceAll));
+			const auto activeTheme=theme->getTheme();
+            const char* diceAllPath=(activeTheme==Theme::Rose || activeTheme==Theme::Blue)?"S:/dice-all-export.bin":theme->getAsset(Asset::DiceAll);
+            lv_image_set_src(img,diceAllPath);
+            lv_obj_set_style_pad_hor(innerContent,0,0);
 
 			lv_obj_set_size(sentenceLabel, 112, LV_SIZE_CONTENT);
 			break;

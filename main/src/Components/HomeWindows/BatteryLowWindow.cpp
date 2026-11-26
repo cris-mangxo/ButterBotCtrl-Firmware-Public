@@ -1,3 +1,5 @@
+#include <cstdio>
+#include <cstdlib>
 #include "BatteryLowWindow.h"
 
 #include <Phrases.h>
@@ -21,5 +23,16 @@ void BatteryLowWindow::buildUI(const BatteryData data){
 	lv_obj_set_size(sentenceLabel, 90, LV_SIZE_CONTENT);
 	lv_obj_set_style_margin_bottom(sentenceLabel, 6, 0);
 
-	updateLayout();
+    updateLayout();lv_obj_update_layout(*this);
+    if(lv_obj_get_height(*this)>112)lv_obj_set_style_margin_bottom(sentenceLabel,0,0);
+
+    updateLayout();lv_obj_update_layout(*this);
+    const int familyBeforeHeight=lv_obj_get_height(*this);
+    const int familyBeforePad=lv_obj_get_style_pad_bottom(img,0);
+    if(familyBeforeHeight>112){
+        if(familyBeforeHeight!=113 || familyBeforePad!=8){std::abort();}
+        lv_obj_set_style_pad_bottom(img,8-1,0);
+    }
+    updateLayout();lv_obj_update_layout(*this);
+    if(lv_obj_get_height(*this)>112){std::abort();}
 }

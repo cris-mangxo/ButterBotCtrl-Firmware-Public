@@ -13,8 +13,8 @@ public:
 	LEDTurnOffWindow(lv_obj_t* parent, const LEDTurnOffData* params);
 
 private:
-	static constexpr const char* TITLE = "LED Turn Off";
-	static constexpr const char* Sentence = "Lightless. Loveless.";
+	static constexpr const char* TITLE = "Apagar LED";
+	static constexpr const char* Sentence = "Sin luz. Sin amor.";
 
 	void buildUI(LEDTurnOffData data);
 };

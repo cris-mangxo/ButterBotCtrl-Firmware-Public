@@ -5,8 +5,8 @@
 static constexpr const char* TAG = "IR_listWindow";
 
 static const std::map<IR_listData::State, const char*> ListSentences = {
-	{ IR_listData::State::NoActions, "Blank slate, smooth brain" },
-	{ IR_listData::State::ListingActions, "Behold my IR powers" },
+	{ IR_listData::State::NoActions, "Mente en blanco" },
+	{ IR_listData::State::ListingActions, "Mira mis poderes IR" },
 };
 
 IR_listWindow::IR_listWindow(lv_obj_t* parent, const IR_listData* params) : HomeWindow(parent, TITLE){

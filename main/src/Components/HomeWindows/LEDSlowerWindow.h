@@ -16,8 +16,8 @@ public:
 	void onDismiss() override;
 
 private:
-	static constexpr const char* TITLE = "LED Slower";
-	static constexpr const char* Sentence = "Taking it slow, bro";
+	static constexpr const char* TITLE = "LED más lento";
+	static constexpr const char* Sentence = "Con calma, cuate";
 
 	LVGIF* gif = nullptr;
 

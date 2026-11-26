@@ -15,7 +15,7 @@ public:
 	void onData(const BBData* data) override;
 
 private:
-	static constexpr const char* TITLE = "Voice Control";
+	static constexpr const char* TITLE = "Control por voz";
 
 	void buildUI(VoiceControlData data);
 };

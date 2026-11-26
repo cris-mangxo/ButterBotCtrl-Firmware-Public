@@ -17,9 +17,9 @@ public:
 	void onData(const BBData* data) override;
 
 private:
-	static constexpr const char* TITLE = "Now Playing";
-	static constexpr const char* NothingSentence = "Only the void hums";
-	static constexpr const char* PlayingSentence = "Earworm detected";
+	static constexpr const char* TITLE = "Suena ahora";
+	static constexpr const char* NothingSentence = "Solo suena el vacío";
+	static constexpr const char* PlayingSentence = "Rola pegajosa detectada";
 
 	void buildUI(const WhatsPlayingData& data);
 

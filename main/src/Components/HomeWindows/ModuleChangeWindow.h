@@ -15,8 +15,8 @@ public:
 	void onData(const BBData* data) override;
 
 private:
-	static constexpr const char* TITLE = "Module Change";
-	static constexpr const char* ModuleRemovedSentence = "Lost a limb";
+	static constexpr const char* TITLE = "Cambio de módulo";
+	static constexpr const char* ModuleRemovedSentence = "Perdí una extremidad";
 
 	void buildUI(ModuleData data);
 };

@@ -1,4 +1,5 @@
 #include "TempHumScaleWindow.h"
+#include <cstdlib>
 
 static std::map<TempHumScale, Asset> tempScaleOffMap = {
 	{ TempHumScale::Celsius, Asset::TempC0 },
@@ -22,7 +23,21 @@ TempHumScaleWindow::TempHumScaleWindow(lv_obj_t* parent, const TempHumScaleData*
 	buildUI(*params);
 }
 
+static const char* r4ScalePath(ThemeService* theme,Asset asset){
+    if(theme->getTheme()==Theme::Main)return theme->getAsset(asset);
+    switch(asset){
+        case Asset::TempC0:return "S:/temp-C-0.bin";
+        case Asset::TempC1:return "S:/temp-C-1.bin";
+        case Asset::TempF0:return "S:/temp-F-0.bin";
+        case Asset::TempF1:return "S:/temp-F-1.bin";
+        case Asset::TempK0:return "S:/temp-K-0.bin";
+        case Asset::TempK1:return "S:/temp-K-1.bin";
+        default:abort();
+    }
+}
 void TempHumScaleWindow::buildUI(const TempHumScaleData data){
+    lv_obj_set_style_pad_hor(innerContent,0,0);
+    lv_obj_set_style_border_side(innerContent,static_cast<lv_border_side_t>(LV_BORDER_SIDE_TOP|LV_BORDER_SIDE_LEFT|LV_BORDER_SIDE_BOTTOM),0);
 	// Image container
 	lv_obj_t* imageContainer = lv_obj_create(innerContent);
 	lv_obj_set_size(imageContainer, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
@@ -33,15 +48,15 @@ void TempHumScaleWindow::buildUI(const TempHumScaleData data){
 
 	// Celsius image
 	lv_obj_t* celsiusImg = lv_image_create(imageContainer);
-	lv_image_set_src(celsiusImg, theme->getAsset(getScaleAsset(data.scale, TempHumScale::Celsius)));
+	lv_image_set_src(celsiusImg, r4ScalePath(theme,getScaleAsset(data.scale, TempHumScale::Celsius)));
 
 	// Fahrenheit image
 	lv_obj_t* fahrenheitImg = lv_image_create(imageContainer);
-	lv_image_set_src(fahrenheitImg, theme->getAsset(getScaleAsset(data.scale, TempHumScale::Fahrenheit)));
+	lv_image_set_src(fahrenheitImg, r4ScalePath(theme,getScaleAsset(data.scale, TempHumScale::Fahrenheit)));
 
 	// Kelvin image
 	lv_obj_t* kelvinImg = lv_image_create(imageContainer);
-	lv_image_set_src(kelvinImg, theme->getAsset(getScaleAsset(data.scale, TempHumScale::Kelvin)));
+	lv_image_set_src(kelvinImg, r4ScalePath(theme,getScaleAsset(data.scale, TempHumScale::Kelvin)));
 
 	// Sentence label
 	lv_obj_t* sentenceLabel = lv_label_create(innerContent);

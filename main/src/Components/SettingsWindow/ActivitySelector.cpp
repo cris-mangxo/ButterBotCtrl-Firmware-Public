@@ -75,7 +75,7 @@ void ActivitySelector::buildUI(lv_obj_t* parent){
 
 	widgetLabel = lv_label_create(*this);
 	lv_obj_add_style(widgetLabel, labelDefaultStyle, 0);
-	lv_label_set_text(widgetLabel, "ACTIVITY");
+	lv_label_set_text(widgetLabel, "Activid.");
 	lv_obj_set_width(widgetLabel, 37);
 	lv_obj_set_pos(widgetLabel, 0, 5);
 

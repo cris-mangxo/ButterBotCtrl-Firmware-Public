@@ -31,9 +31,9 @@ private:
 		BottomSensorMode::On
 	};
 	static constexpr std::array<const char*, OptionsNum> OptionNameMap = {
-		"OFF",
-		"REDUCED",
-		"ON"
+		"No",
+		"Reduc.",
+		"Sí"
 	};
 
 	std::function<void(uint32_t)> keyCb;

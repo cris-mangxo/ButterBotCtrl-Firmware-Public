@@ -19,25 +19,25 @@ private:
 class PrevSongWindow : public MediaControlWindow {
 public:
 	PrevSongWindow(lv_obj_t* parent, const MediaControlData* params)
-		: MediaControlWindow(parent, "Music", Asset::MusicBack, "This sounds familiar"){}
+		: MediaControlWindow(parent, "Música", Asset::MusicBack, "Esto me suena"){}
 };
 
 class NextSongWindow : public MediaControlWindow {
 public:
 	NextSongWindow(lv_obj_t* parent, const MediaControlData* params)
-		: MediaControlWindow(parent, "Music", Asset::MusicForward, "Next track, same sadness"){}
+		: MediaControlWindow(parent, "Música", Asset::MusicForward, "Otra canción, misma tristeza"){}
 };
 
 class PlayMusicWindow : public MediaControlWindow {
 public:
 	PlayMusicWindow(lv_obj_t* parent, const MediaControlData* params)
-		: MediaControlWindow(parent, "Music", Asset::MusicPlay, "Resuming the noise"){}
+		: MediaControlWindow(parent, "Música", Asset::MusicPlay, "Sigue el ruido"){}
 };
 
 class StopMusicWindow : public MediaControlWindow {
 public:
 	StopMusicWindow(lv_obj_t* parent, const MediaControlData* params)
-		: MediaControlWindow(parent, "Music", Asset::MusicPause, "Silence, finally"){}
+		: MediaControlWindow(parent, "Música", Asset::MusicPause, "Silencio, por fin"){}
 };
 
 #endif //BUTTERBOTCTRL_FIRMWARE_MEDIACONTROLWINDOW_H

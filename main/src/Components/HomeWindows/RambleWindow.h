@@ -15,7 +15,7 @@ public:
 private:
 	lv_obj_t* sentenceLabel;
 
-	static constexpr const char* TITLE = "Ramble";
+	static constexpr const char* TITLE = "Divagar";
 
 	void buildUI(RambleData data);
 };

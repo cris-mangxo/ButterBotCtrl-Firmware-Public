@@ -32,10 +32,10 @@ private:
 		ActivityMode::Hyper
 	};
 	static constexpr std::array<const char*, OptionsNum> OptionNameMap = {
-		"OFF",
-		"CHILL",
-		"ACTIVE",
-		"HYPER"
+		"Apagado",
+		"Tranquilo",
+		"Activo",
+		"Hiperactivo"
 	};
 
 	std::function<void(uint32_t)> keyCb;

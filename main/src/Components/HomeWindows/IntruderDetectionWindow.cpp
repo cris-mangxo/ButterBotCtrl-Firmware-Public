@@ -1,8 +1,8 @@
 #include "IntruderDetectionWindow.h"
 
-static constexpr const char* ActivatedSentence = "Intruder detection activated";
-static constexpr const char* DeactivatedSentence = "Intruder detection deactivated";
-static constexpr const char* MissingSentence = "Intruder detection module missing";
+static constexpr const char* ActivatedSentence = "Vigilancia de intrusos activa";
+static constexpr const char* DeactivatedSentence = "Vigilancia apagada";
+static constexpr const char* MissingSentence = "Falta módulo de vigilancia";
 
 IntruderDetectionWindow::IntruderDetectionWindow(lv_obj_t* parent, const PIRModuleData* params, bool activated)
 	: HomeWindow(parent, TITLE){

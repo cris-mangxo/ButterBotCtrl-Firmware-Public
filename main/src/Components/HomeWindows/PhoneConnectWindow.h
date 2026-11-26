@@ -15,9 +15,9 @@ public:
 	void onData(const BBData* data) override;
 
 private:
-	static constexpr const char* TITLE = "Phone";
-	static constexpr const char* ConnectedSentence = "Phone link established";
-	static constexpr const char* DisconnectedSentence = "Phone? What phone?";
+	static constexpr const char* TITLE = "Teléfono";
+	static constexpr const char* ConnectedSentence = "Teléfono conectado";
+	static constexpr const char* DisconnectedSentence = "¿Teléfono? ¿Cuál teléfono?";
 
 	void buildUI(PhoneConnData data);
 };

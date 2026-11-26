@@ -15,7 +15,7 @@ public:
 	void onData(const BBData* data) override;
 
 private:
-	static constexpr const char* TITLE = "Intruder Detection";
+	static constexpr const char* TITLE = "Vigilar intrusos";
 
 	void buildUI(IntruderData data);
 };

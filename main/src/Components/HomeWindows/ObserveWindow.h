@@ -15,7 +15,7 @@ public:
 private:
 	lv_obj_t* sentenceLabel;
 
-	static constexpr const char* TITLE = "Observation";
+	static constexpr const char* TITLE = "Observar";
 
 	void buildUI(ObserveData data);
 };

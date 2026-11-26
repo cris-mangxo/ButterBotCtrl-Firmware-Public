@@ -1,4 +1,7 @@
 #include "PairingScreen.h"
+#include <algorithm>
+#include <cstdlib>
+#include "src/misc/lv_text_private.h"
 
 #include <LV_Interface/LVGL.h>
 #include <LV_Interface/LVGIF.h>
@@ -29,6 +32,7 @@ PairingScreen::PairingScreen(){
 	pairingGif->reset();
 	lv_obj_set_y(*pairingGif, -8);
 
+	buildSpanishCaption();
 	buildSettingsHint();
 
 	gap->onConnEvent.bind(app->getService<LVGL>(), [this](const BLE::GAP::ConnEvent event) {
@@ -87,7 +91,7 @@ void PairingScreen::buildSettingsHint(){
 	lv_obj_set_style_text_font(label, &lv_font_butter, 0);
 	lv_obj_set_style_text_color(label, style.primaryColor, 0);
 	lv_obj_set_style_pad_hor(label, 2, 0);
-	lv_label_set_text_static(label, "Click joystick for");
+	lv_label_set_text_static(label, "Toca joystick para");
 
 	// The pairing archive carries the default theme's settings icon
 	lv_obj_t* icon = lv_image_create(row);
@@ -104,5 +108,46 @@ void PairingScreen::handleButtonEvent(const Button btn, const ButtonInput::Actio
 }
 
 void PairingScreen::loop(){
+
+}
+
+void PairingScreen::buildSpanishCaption(){
+    constexpr unsigned scale=1;
+
+        lv_obj_t* band=lv_obj_create(*this);
+        lv_obj_set_size(band,120,14);lv_obj_set_pos(band,4,98);
+        lv_obj_set_style_bg_color(band,lv_color_black(),0);
+        lv_obj_set_style_bg_opa(band,LV_OPA_COVER,0);
+        lv_obj_set_style_opa(band,LV_OPA_COVER,0);
+        lv_obj_set_style_border_width(band,0,0);lv_obj_set_style_radius(band,0,0);
+        lv_obj_set_style_pad_all(band,0,0);lv_obj_set_style_outline_width(band,0,0);lv_obj_set_style_shadow_width(band,0,0);
+        lv_obj_remove_flag(band,LV_OBJ_FLAG_CLICKABLE);lv_obj_remove_flag(band,LV_OBJ_FLAG_SCROLLABLE);lv_obj_remove_flag(band,LV_OBJ_FLAG_CLICK_FOCUSABLE);
+        lv_obj_add_flag(band,LV_OBJ_FLAG_FLOATING);lv_obj_add_flag(band,LV_OBJ_FLAG_IGNORE_LAYOUT);
+        lv_obj_t* caption=lv_label_create(band);
+        lv_label_set_text(caption,"Conectando");
+        lv_obj_set_style_text_font(caption,&lv_font_butter,0);
+        lv_obj_set_style_text_color(caption,lv_color_hex(0xff6d00),0);
+        lv_obj_set_style_pad_all(caption,0,0);lv_obj_set_style_bg_opa(caption,LV_OPA_TRANSP,0);
+        lv_obj_set_style_text_line_space(caption,0,0);lv_obj_set_style_text_letter_space(caption,0,0);
+        lv_label_set_long_mode(caption,LV_LABEL_LONG_CLIP);
+        lv_obj_set_size(caption,LV_SIZE_CONTENT,LV_SIZE_CONTENT);
+        lv_obj_remove_flag(caption,LV_OBJ_FLAG_CLICKABLE);lv_obj_remove_flag(caption,LV_OBJ_FLAG_SCROLLABLE);lv_obj_remove_flag(caption,LV_OBJ_FLAG_CLICK_FOCUSABLE);
+        lv_obj_add_flag(caption,LV_OBJ_FLAG_FLOATING);lv_obj_add_flag(caption,LV_OBJ_FLAG_IGNORE_LAYOUT);
+        lv_obj_update_layout(caption);
+        const char* text=lv_label_get_text(caption);uint32_t cursor=0,character=0;
+        int left=10000,top=10000,right=-10000,bottom=-10000;
+        while(text[cursor]){
+            uint32_t cp=lv_text_encoded_next(text,&cursor);lv_point_t point;lv_label_get_letter_pos(caption,character++,&point);
+            lv_font_glyph_dsc_t glyph;
+            if(!lv_font_get_glyph_dsc(&lv_font_butter,&glyph,cp,0))std::abort();
+            int x=point.x+glyph.ofs_x,y=point.y+lv_font_butter.line_height-lv_font_butter.base_line-glyph.box_h-glyph.ofs_y;
+            left=std::min(left,x);top=std::min(top,y);right=std::max(right,x+glyph.box_w);bottom=std::max(bottom,y+glyph.box_h);
+        }
+        int inkWidth=(right-left)*scale,inkHeight=(bottom-top)*scale;
+        if(inkWidth>116||inkHeight>14)std::abort();
+        int inkX=(120-inkWidth)/2,inkY=(14-inkHeight)/2;
+        lv_obj_set_pos(caption,inkX-left*scale,inkY-top*scale);
+
+
 
 }

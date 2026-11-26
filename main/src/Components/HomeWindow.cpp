@@ -1,4 +1,12 @@
 #include "HomeWindow.h"
+#include "src/misc/lv_text_private.h"
+#if LV_TXT_ENC != LV_TXT_ENC_UTF8
+#error Header_family_requires_pinned_UTF8
+#endif
+#include <algorithm>
+#include <climits>
+#include <cstdlib>
+#include <cstdio>
 
 #include "Fonts/font.hpp"
 
@@ -74,6 +82,33 @@ void HomeWindow::buildUI(lv_obj_t* parent, const char* title){
 	lv_obj_set_style_bg_opa(corner, LV_OPA_COVER, 0);
 	lv_image_set_src(corner, theme->getAsset(Asset::Corner));
 
+    // Diagnostic H7: the original font descriptors govern this instance's title only.
+    {
+        const lv_font_t* titleFont=lv_obj_get_style_text_font(titleLabel,0);
+        const char* titleText=lv_label_get_text(titleLabel);
+        bool valid=titleFont && titleText;
+        int minY=INT_MAX,maxY=INT_MIN;unsigned glyphs=0;
+        if(valid){
+            uint32_t cursor=0;
+            while(titleText[cursor]){
+                const uint32_t before=cursor;
+                const uint32_t codepoint=lv_text_encoded_next(titleText,&cursor);
+                lv_font_glyph_dsc_t glyph{};
+                if(cursor<=before || !lv_font_get_glyph_dsc(titleFont,&glyph,codepoint,0) || glyph.is_placeholder || glyph.resolved_font!=titleFont){valid=false;break;}
+                if(glyph.box_h==0)continue;
+                const int top=(int)titleFont->line_height-(int)titleFont->base_line-(int)glyph.box_h-(int)glyph.ofs_y;
+                minY=std::min(minY,top);maxY=std::max(maxY,top+(int)glyph.box_h-1);glyphs++;
+            }
+        }
+        const bool hasInk=valid && minY<=maxY;
+        const int shift=hasInk && minY==0?1:0;
+        const int height=hasInk?std::max(6,maxY+shift+1):6;
+        if(hasInk && (height>7 || minY<0)){std::fflush(stdout);std::abort();}
+        if(hasInk){
+            if(shift){lv_obj_set_style_translate_y(titleLabel,shift,0);lv_obj_set_scrollbar_mode(titleEl,LV_SCROLLBAR_MODE_OFF);}
+            if(height>6)lv_obj_set_style_min_height(titleEl,height,0);
+        }
+    }
 	updateLayout();
 }
 

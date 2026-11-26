@@ -13,7 +13,7 @@ public:
 	ChargingFullWindow(lv_obj_t* parent, const BatteryData* params);
 
 private:
-	static constexpr const char* TITLE = "Charged";
+	static constexpr const char* TITLE = "Carga completa";
 
 	void buildUI(BatteryData data);
 };

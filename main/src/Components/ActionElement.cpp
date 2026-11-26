@@ -1,4 +1,5 @@
 #include "ActionElement.h"
+#include "parallel-titles.hpp"
 
 #include <algorithm>
 #include <cstring>
@@ -70,8 +71,9 @@ void ActionElement::buildUI(){
 
 	addButton(SettingsTitle, nullptr);
 	for(const auto& [name, action] : ScenarioNameMap){
-		phraseTexts.push_back(collectPhrases(action.scenario, action.data));
-		addButton(name, phraseTexts.back().c_str());
+		auto english=collectPhrases(action.scenario, action.data);
+        phraseTexts.push_back(english.empty()?english:std::string("Voz en inglés: ")+english);
+		addButton(mc10_action_titles[phraseTexts.size()-1], phraseTexts.back().c_str());
 	}
 }
 
