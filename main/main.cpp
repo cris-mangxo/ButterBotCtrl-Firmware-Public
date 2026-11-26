@@ -48,10 +48,13 @@ protected:
 		// Stack overflow otherwise - increase Threaded/AsyncEntity stack size if logging is needed
 		esp_log_level_set("Com", ESP_LOG_NONE);
 
-		auto ret = nvs_flash_init();
+		const auto ret = nvs_flash_init();
 		if(ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND){
-			ESP_ERROR_CHECK(nvs_flash_erase());
-			ret = nvs_flash_init();
+			ESP_LOGE("NVS", "Startup halted to preserve settings: %s", esp_err_to_name(ret));
+			// Wait for a power cycle or service without erasing settings or rebooting.
+			for(;;){
+				vTaskDelay(pdMS_TO_TICKS(1000));
+			}
 		}
 		ESP_ERROR_CHECK(ret);
 
